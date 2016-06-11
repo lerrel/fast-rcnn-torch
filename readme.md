@@ -2,12 +2,35 @@
 This is a torch implementation of the Fast R-CNN proposed by Girshick et .al. [1].
 ## Requirements
 * You need to install torch.
-* The current implementation uses these torch packages: ```nn, inn, cudnn, image, matio, optim, paths ```
+* The current implementation uses these torch packages: ```nn, inn, cudnn, image, matio, optim, paths, xml, tds ```
 * You need a machine with CUDA GPU.
 *  You need to download the required weights and proposal files as discussed below.
 
 ## Running the demo
-For running the demo you only need to download the weights of the Fast R-CNN network. Please run ``` ./scripts/get_frcnn_models.sh``` to get the trained Fast R-CNN models (currently AlexNet trained on VOC2007 trainval set). After downloading the weights file you can run the demo in the terminal as follows:
+#### Installing PASCAL VOC 2007
+
+0. Download the training, validation, test data and VOCdevkit:
+
+  <pre>
+  wget http://pascallin.ecs.soton.ac.uk/challenges/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
+  wget http://pascallin.ecs.soton.ac.uk/challenges/VOC/voc2007/VOCtest_06-Nov-2007.tar
+  wget http://pascallin.ecs.soton.ac.uk/challenges/VOC/voc2007/VOCdevkit_08-Jun-2007.tar
+  </pre>
+
+0. Extract all of these tars into one directory, it's called `VOCdevkit`. 
+
+  <pre>
+  tar xvf VOCtrainval_06-Nov-2007.tar
+  tar xvf VOCtest_06-Nov-2007.tar
+  tar xvf VOCdevkit_08-Jun-2007.tar
+  </pre>
+
+0. Create a sym link.
+  <pre>
+  ln -sf /your/path/to/voc2007/VOCdevkit /path/to/rcnn/data/datasets/voc_2007
+  </pre>
+
+For running the demo you need to download the weights of the Fast R-CNN network. Please run ``` ./scripts/get_frcnn_models.sh``` to get the trained Fast R-CNN models (currently AlexNet trained on VOC2007 trainval set). After downloading the weights file you can run the demo in the terminal as follows:
 ```lua
 qlua demo.lua
 ```
